@@ -1,0 +1,2 @@
+# filename|source_url
+# Add one image per line. The GitHub workflow downloads it and commits a permanent copy under daa-savings/production/.
