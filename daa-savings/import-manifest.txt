@@ -1,2 +1,3 @@
 # filename|source_url
 # Add one image per line. The GitHub workflow downloads it and commits a permanent copy under daa-savings/production/.
+Sophia_Villegas_CLEAN_NO_BLUR_V2.png|https://lh7-rt.googleusercontent.com/slidesz/AGV_vUcCAZWPeM0Pv_3GXPyYJPWcExmJp39YBviOOUcYukjK6hVAp-BlsLEDBdxJhZJXzs1Y2-S8bYFs-_COwKlHfGJAseqd4t5zSA990tzz9VQLpgUwQ52tLlQkyv7MtJ-Oxes3wn3Fn9G4wkdogea3Sd06O_Ei8vc0lBYkRQOY8khhBTOG=s2048?key=pLZ8Fd56DCkCTMsCGPtmrg
