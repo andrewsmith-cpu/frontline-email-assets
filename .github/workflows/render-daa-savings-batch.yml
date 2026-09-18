@@ -1,0 +1,46 @@
+name: Render DAA Savings Batch
+
+on:
+  push:
+    paths:
+      - 'daa-savings/production/batch-2026-09-18/clients.csv'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install renderer dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pillow
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-gfs-didot || true
+
+      - name: Render approved production images
+        run: python daa-savings/production/batch-2026-09-18/render_batch.py
+
+      - name: Commit rendered images
+        run: |
+          git config user.name "DAA Production Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add daa-savings/production/batch-2026-09-18/rendered/
+          if git diff --cached --quiet; then
+            echo "No rendered image changes."
+          else
+            git commit -m "Render DAA savings batch 2026-09-18"
+            git push
+          fi
