@@ -86,7 +86,7 @@ def render(row):
     center(dr,money(vals['do_nothing']),(321,514,569,568),DIDOT_B,48,31)
     fs=ImageFont.truetype(str(DIDOT),18)
     dn=money(vals['do_nothing'])
-    for line,y in zip(['You could end up paying',f'{dn} over time','if you keep paying what','you're paying now.'],[578,600,622,644]):
+    for line,y in zip(['You could end up paying',f'{dn} over time','if you keep paying what',"you're paying now."],[578,600,622,644]):
         bb=dr.textbbox((0,0),line,font=fs)
         dr.text((445-(bb[2]-bb[0])/2,y),line,font=fs,fill=NAVY)
 
