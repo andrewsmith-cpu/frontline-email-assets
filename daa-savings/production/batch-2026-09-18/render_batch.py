@@ -82,11 +82,11 @@ def render(row):
     dr.rectangle((32,525,287,668),fill=WHITE)
     center(dr,money(vals['current']),(38,535,280,624),DIDOT_B,60,38)
 
-    dr.rectangle((314,508,575,670),fill=WHITE)
+    dr.rectangle((314,508,575,680),fill=WHITE)
     center(dr,money(vals['do_nothing']),(321,514,569,568),DIDOT_B,48,31)
     fs=ImageFont.truetype(str(DIDOT),18)
     dn=money(vals['do_nothing'])
-    for line,y in zip(['You could end up paying',f'{dn} over time','if you keep paying what',"you're paying now."],[578,600,622,644]):
+    for line,y in zip(['You could end up paying',f'{dn} over time','if you keep paying what',"you're paying now."],[568,590,612,634]):
         bb=dr.textbbox((0,0),line,font=fs)
         dr.text((445-(bb[2]-bb[0])/2,y),line,font=fs,fill=NAVY)
 
