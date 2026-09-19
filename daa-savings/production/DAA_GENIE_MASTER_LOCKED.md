@@ -119,3 +119,26 @@ Examples:
 - Automatic HOLD signature: current monthly payment = eligible debt × 3.00%, do-nothing total = eligible debt × 2.14, and payment options match the fixed V8.7 term-factor estimates. Any row matching that pattern is synthetic and must not send.
 - A repeated complete financial set across unrelated Zenith IDs is an automatic STOP.
 - DAA GENIE visual edits never authorize changes to calculator values or source data.
+
+
+## FERRARI DATA ENGINE RESTORE — 2026-09-18
+
+- The original authoritative calculator has been re-identified and is the only approved calculator source:
+  - Google Sheet: Andrew S. | Do Nothing Calculator
+  - Calculator ID: `1je-Sf5W8Nk2jI08hnpLu7wgoltHDTZkQ0vxSWfZsuIY`
+- Restored original dashboard bridge mapping:
+  - Dashboard F7 = Eligible Debt
+  - Dashboard F8 = Current Monthly Payments
+  - Dashboard F9 = Payoff Years
+  - Dashboard F13 = Do Nothing Total
+  - Dashboard F16 = Program Payment
+  - Dashboard F19 = Program Total
+  - Dashboard F21 = Monthly Savings
+  - Dashboard F22 = Total Savings
+  - Input D6 = Client Name
+  - Input D10 = Program Term
+- Exact client-name matching is mandatory before calculator import.
+- DAA GENIE production terms are 24 / 36 / 48 / 54 / 60.
+- Verified rows must carry `WOW Data Source = CALCULATOR VERIFIED` or `ZENITH VERIFIED`.
+- Synthetic estimate rows are HOLD only and can never authorize production.
+- Restored additive Apps Script source is preserved in the user's Library as `/DAA/DAA_FERRARI_DATA_ENGINE.gs`.
