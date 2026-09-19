@@ -1,0 +1,31 @@
+name: Update PBS Final Assets
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/update-pbs-final-assets.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  update-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download locked final assets
+        run: |
+          mkdir -p pbs-final
+          curl -L --fail 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-5654-81fd-93fc-652b31b80301/raw?se=2026-09-19T16%3A46%3A52Z&sp=r&sv=2026-02-06&sr=b&scid=5a9e62eb-c421-577c-95de-3eee886a42a2&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-19T14%3A07%3A24Z&ske=2026-09-20T14%3A07%3A24Z&sks=b&skv=2026-02-06&sig=opZRKgPXp/lBXrZmDsAeQvygTMphoTblxvzOOzB5RWE%3D' -o pbs-final/top.png
+          curl -L --fail 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-74ac-81fd-b84e-c4b3e69a6637/raw?se=2026-09-19T16%3A46%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=3b18e8a0-585b-528a-b8ee-0528de7ecdb7&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-19T14%3A08%3A19Z&ske=2026-09-20T14%3A08%3A19Z&sks=b&skv=2026-02-06&sig=FhzOFL6WstJpa%2BZGZWH5wE6WjI0ekHSYrvrqNf7fl7k%3D' -o pbs-final/video-left.png
+          curl -L --fail 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-d754-81fd-bae2-155f7d012430/raw?se=2026-09-19T16%3A46%3A54Z&sp=r&sv=2026-02-06&sr=b&scid=da1c1cd3-68e7-545a-b5ea-dc1d9b885015&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-19T15%3A45%3A20Z&ske=2026-09-20T15%3A45%3A20Z&sks=b&skv=2026-02-06&sig=GMxmIAxUU6NcpFlujvAQuc8BB0JTpOxS%2BsJ5Rc1ARfM%3D' -o pbs-final/video-right.png
+          curl -L --fail 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-8dc0-81fd-8a57-93eb03aa8d81/raw?se=2026-09-19T16%3A46%3A54Z&sp=r&sv=2026-02-06&sr=b&scid=1d797196-fd38-5c7d-bea7-0eddb4368642&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-19T16%3A16%3A50Z&ske=2026-09-20T16%3A16%3A50Z&sks=b&skv=2026-02-06&sig=6SxFlS%2B5iNE4Tuex/d56jAnvk7cFC8faIMfmNgwqquk%3D' -o pbs-final/cta.png
+          curl -L --fail 'https://sdmntprwestus3.oaiusercontent.com/files/00000000-a650-81fd-b08b-1fa2ad5dba00/raw?se=2026-09-19T16%3A46%3A55Z&sp=r&sv=2026-02-06&sr=b&scid=46272803-58bb-539e-aefc-a290c1373815&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-19T16%3A39%3A17Z&ske=2026-09-20T16%3A39%3A17Z&sks=b&skv=2026-02-06&sig=9%2BacFCe%2BBrl/PiohtbkiGj4umoZ59DJi3l4e/lR/%2BFY%3D' -o pbs-final/footer.png
+      - name: Commit assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pbs-final
+          git diff --cached --quiet || git commit -m "Update locked PBS final assets"
+          git push
