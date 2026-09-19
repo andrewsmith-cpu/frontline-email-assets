@@ -172,3 +172,21 @@ This is a permanent production rule.
 • No dash punctuation in client facing copy.
 • Use ellipses or rewrite the sentence instead.
 • This applies to subjects, body copy, captions, callouts, and signatures unless Andrew explicitly asks for a dash.
+
+
+## DAA GENIE V2 — FINAL POLISH LOCK (APPROVED 2026-09-19)
+
+These are cosmetic-only refinements. The Ferrari Lock remains absolute: calculator logic, client data, Zenith matching, term logic, and send eligibility are untouched.
+
+Approved visual refinements:
+- Add a continuous thin navy outer border around the entire finished image, including across the top/header edge.
+- Reduce the vertical gap between the bottom of the header and the beginning of the client text/content below it.
+- Correct the footer proportions so the footer typography/graphics do not look vertically elongated or stretched.
+- Leave the “IF YOU DO NOTHING” section exactly as currently approved. Do not shrink or otherwise alter its text unless Andrew explicitly asks later.
+- Preserve the approved email signature exactly as shown in the current proof.
+- No other layout, copy, color, calculator, data, or structural changes are authorized.
+
+Production rule:
+- Treat this as detailing only: paint, trim, border, spacing, footer proportions.
+- Do not redesign, rebuild, reflow, or substitute a different renderer.
+- V2 requires a real Gmail draft/self-send proof before any client production use.
