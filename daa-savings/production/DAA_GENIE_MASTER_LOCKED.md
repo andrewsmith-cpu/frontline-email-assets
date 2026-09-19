@@ -156,3 +156,12 @@ This is a permanent production rule.
 - Any change to appearance must be treated as paint only. The drivetrain stays untouched.
 - Before any future production-path change, compare against a known-good control client and a real Gmail draft. No client send until the result matches.
 - Current known-good control: Jeffrey Rawlins Z3727927.
+
+
+## LIST-ONLY PRODUCTION LOCK
+
+- Production population is limited strictly to clients present on the approved DAA production list.
+- Test/control clients that are not on that list are QA-only and must never be included when Andrew says “generate,” “begin production,” “run production,” or equivalent.
+- Jeffrey Rawlins and any other off-list control record must remain excluded from production unless Andrew explicitly names that client for a separate test.
+- Production selection must originate from the approved list first; calculator verification happens only after list membership is confirmed.
+- If list membership cannot be confirmed, the record is HOLD / EXCLUDED, never assumed eligible.
