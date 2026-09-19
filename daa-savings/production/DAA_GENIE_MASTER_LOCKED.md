@@ -142,3 +142,17 @@ Examples:
 - Verified rows must carry `WOW Data Source = CALCULATOR VERIFIED` or `ZENITH VERIFIED`.
 - Synthetic estimate rows are HOLD only and can never authorize production.
 - Restored additive Apps Script source is preserved in the user's Library as `/DAA/DAA_FERRARI_DATA_ENGINE.gs`.
+
+
+## FERRARI LOCK — DO NOT REBUILD
+
+This is a permanent production rule.
+
+- The existing working calculator / data path is the engine. Do not replace it, recreate it, approximate it, or derive a new engine from lead-list debt amounts.
+- DAA GENIE is presentation only. Cosmetic changes must never alter calculator logic, source data, client matching, term logic, or send eligibility.
+- Never introduce a fallback calculator, synthetic estimator, bulk approximation, or substitute renderer as a shortcut.
+- If the existing engine cannot supply a required client value, production stops for that client. Missing data is a HOLD, never an invitation to estimate.
+- Zenith ID / verified client identity must remain the record key.
+- Any change to appearance must be treated as paint only. The drivetrain stays untouched.
+- Before any future production-path change, compare against a known-good control client and a real Gmail draft. No client send until the result matches.
+- Current known-good control: Jeffrey Rawlins Z3727927.
