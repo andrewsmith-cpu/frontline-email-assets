@@ -109,3 +109,13 @@ Examples:
 - "DAA Genie for John Smith" → generate the locked package for John Smith.
 - "Put DAA Genie for John Smith in drafts" → create a Gmail draft only.
 - "Send DAA Genie to John Smith" → send only when explicitly instructed.
+
+
+## PRODUCTION DATA SAFETY LOCK — 2026-09-18
+
+- DAA GENIE is presentation only. It must never manufacture or estimate client financial values.
+- The authoritative path is: Zenith client record -> Andrew S. Do Nothing Calculator / verified stored calculator values -> DAA GENIE -> Gmail.
+- Never send from a row populated by the V8.7 bulk-estimate helper or any equivalent synthetic calculation.
+- Automatic HOLD signature: current monthly payment = eligible debt × 3.00%, do-nothing total = eligible debt × 2.14, and payment options match the fixed V8.7 term-factor estimates. Any row matching that pattern is synthetic and must not send.
+- A repeated complete financial set across unrelated Zenith IDs is an automatic STOP.
+- DAA GENIE visual edits never authorize changes to calculator values or source data.
