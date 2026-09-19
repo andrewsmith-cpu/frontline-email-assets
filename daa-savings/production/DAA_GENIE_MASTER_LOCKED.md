@@ -39,6 +39,8 @@ Hi [First Name],
 
 This is Andrew Logan Smith with Debt Advisors of America. I have your file open as part of a quality-control review and noticed we were never able to move forward after your original consultation.
 
+Can you tell me what happened, or what kept us from being able to move forward at the time? I’d genuinely appreciate the feedback.
+
 The hard part is already done.
 
 We already have your creditor information, eligible debt, budget, and the information from your original review — you do not need to start over.
@@ -48,8 +50,6 @@ With a new month and another billing cycle beginning, if your balances are still
 [LOCKED SAVINGS SUMMARY IMAGE]
 
 Please take a close look at the updated Savings Summary above. It should give you a very good idea of what your options could look like today.
-
-[First Name], if nothing else, I’d genuinely appreciate your feedback on what kept you from moving forward.
 
 If your situation has changed, we can simply pick up where you left off and review the numbers together.
 
