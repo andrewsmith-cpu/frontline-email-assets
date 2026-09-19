@@ -165,3 +165,10 @@ This is a permanent production rule.
 - Jeffrey Rawlins and any other off-list control record must remain excluded from production unless Andrew explicitly names that client for a separate test.
 - Production selection must originate from the approved list first; calculator verification happens only after list membership is confirmed.
 - If list membership cannot be confirmed, the record is HOLD / EXCLUDED, never assumed eligible.
+
+
+## COPY STYLE LOCK
+
+• No dash punctuation in client facing copy.
+• Use ellipses or rewrite the sentence instead.
+• This applies to subjects, body copy, captions, callouts, and signatures unless Andrew explicitly asks for a dash.
