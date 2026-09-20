@@ -1,9 +1,6 @@
-name: Render DAA Savings QA
+name: Render DAA Savings QA — MANUAL ONLY
 
 on:
-  push:
-    paths:
-      - 'daa-savings/production/batch-2026-09-18/clients.csv'
   workflow_dispatch:
 
 permissions:
