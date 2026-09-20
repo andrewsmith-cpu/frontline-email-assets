@@ -47,13 +47,13 @@ def render(row):
         base=Image.open(PROOF).convert('RGB').resize((1055,1491), Image.Resampling.LANCZOS)
         assets={
             'header':(0,0,1055,253),
-            'footer':(0,1090,1055,1400),
+            'footer':(0,1104,1055,1400),
             'current':(36,432,102,500),
             'nothing':(289,432,356,500),
             'program':(548,432,616,500),
             'savings':(801,432,868,500),
             'debt':(596,322,662,394),
-            'pig':(620,978,701,1065),
+            'pig':(620,986,701,1065),
         }
         uris={}
         for key,box in assets.items():
@@ -72,7 +72,7 @@ def render(row):
 
         doc=f"""<!doctype html><html><head><meta charset="utf-8"><style>
         @page{{size:1055px 1400px;margin:0}}*{{box-sizing:border-box}}body{{margin:0;background:#fff;font-family:'GFS Didot','Times New Roman',serif;color:#061635}}
-        .canvas{{position:relative;width:1055px;height:1400px;overflow:hidden;background:#fff}}.header{{width:1055px;height:253px;display:block}}.footer{{position:absolute;left:0;top:1090px;width:1055px;height:310px;display:block}}
+        .canvas{{position:relative;width:1055px;height:1400px;overflow:hidden;background:#fff}}.header{{width:1055px;height:253px;display:block}}.footer{{position:absolute;left:0;top:1104px;width:1055px;height:296px;display:block}}
         .client{{position:absolute;left:0;top:253px;width:1055px;height:160px;background:#fff}}.client-left{{position:absolute;left:24px;top:8px;width:530px;height:145px;border-right:2px solid #c48c25;padding-right:14px}}
         .name{{font-weight:700;font-size:{name_size(name)}px;line-height:1;color:#05070b;white-space:nowrap;overflow:hidden}}.meta{{display:flex;align-items:center;gap:18px;margin-top:16px;font-size:22px;color:#173d74;white-space:nowrap}}.meta .sep{{height:35px;width:2px;background:#c48c25}}
         .debt-card{{position:absolute;left:574px;top:10px;width:457px;height:140px;border:1px solid #a88b59;border-radius:12px;background:linear-gradient(#fff,#fbf7ef);box-shadow:0 4px 10px rgba(0,0,0,.12);overflow:hidden}}
@@ -82,7 +82,7 @@ def render(row):
         .big{{font-size:52px;font-weight:700;line-height:1.05;color:#030407;white-space:nowrap}}.explain{{font-size:17px;line-height:1.08;color:#193f78;margin:8px auto 0;width:210px}}
         .payment-head{{position:absolute;left:22px;top:757px;width:1011px;height:53px;display:flex;align-items:center}}.payment-title{{font-size:36px;font-weight:700;color:#061635;white-space:nowrap}}.goldline{{height:2px;background:#d59627;flex:1;margin:0 16px}}.payment-sub{{font-size:21px;font-style:italic;color:#183e77;white-space:nowrap}}
         .paygrid{{position:absolute;left:22px;top:808px;width:1011px;height:140px;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}}.pay{{border:1px solid #d8d1c4;border-radius:9px;background:linear-gradient(#fff,#faf6ed);box-shadow:0 4px 9px rgba(0,0,0,.10);text-align:center;padding:15px 7px}}.pay.sel{{background:linear-gradient(#f8dea1,#dfa53b);border-color:#aa6e0d}}.term{{font-size:24px;color:#173d74;line-height:1}}.pay.sel .term{{color:#101010}}.payval{{font-weight:700;color:#050505;line-height:1;margin-top:18px;white-space:nowrap}}
-        .savings{{position:absolute;left:22px;top:963px;width:1011px;height:107px;border:1px solid #bc7a14;border-radius:10px;background:linear-gradient(#fff,#fbf7ef);box-shadow:0 3px 8px rgba(0,0,0,.08);display:flex;align-items:center;overflow:hidden}}.save-left{{width:555px;padding-left:16px}}.save-title{{font-size:34px;font-weight:700;line-height:1;color:#061635;white-space:nowrap}}.save-sub{{font-size:20px;color:#173d74;margin-top:6px;white-space:nowrap}}.save-sep{{width:2px;height:80px;background:#d59627}}.save-right{{flex:1;height:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 14px}}.save-right img{{width:81px;height:87px;object-fit:contain}}.save-val{{font-size:{value_size(vals['total_savings'],52,44)}px;font-weight:700;color:#b26f00;white-space:nowrap;letter-spacing:-1px}}
+        .savings{{position:absolute;left:22px;top:963px;width:1011px;height:107px;border:1px solid #bc7a14;border-radius:10px;background:linear-gradient(#fff,#fbf7ef);box-shadow:0 3px 8px rgba(0,0,0,.08);display:flex;align-items:center;overflow:hidden}}.save-left{{width:575px;padding-left:16px}}.save-title{{font-size:34px;font-weight:700;line-height:1;color:#061635;white-space:nowrap}}.save-sub{{font-size:20px;color:#173d74;margin-top:6px;white-space:nowrap}}.save-right{{flex:1;height:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:0 14px}}.save-right img{{width:81px;height:79px;object-fit:contain}}.save-val{{font-size:{value_size(vals['total_savings'],52,44)}px;font-weight:700;color:#b26f00;white-space:nowrap;letter-spacing:-1px}}
         </style></head><body><div class="canvas">
         <img class="header" src="{uris['header']}">
         <section class="client"><div class="client-left"><div class="name">{html.escape(name)}</div><div class="meta"><span>Client ID: {html.escape(cid)}</span><span class="sep"></span><span>Review Date: {html.escape(date)}</span></div></div>
@@ -95,7 +95,7 @@ def render(row):
         </section>
         <div class="payment-head"><div class="payment-title">PAYMENT OPTIONS</div><div class="goldline"></div><div class="payment-sub">Please select the option that best fits your budget.</div><div class="goldline" style="max-width:42px"></div></div>
         <div class="paygrid">{pay_html}</div>
-        <div class="savings"><div class="save-left"><div class="save-title">TOTAL ESTIMATED SAVINGS</div><div class="save-sub">Compared with estimated do-nothing payback, including interest.</div></div><div class="save-sep"></div><div class="save-right"><img src="{uris['pig']}"><div class="save-val">{html.escape(money(vals['total_savings']))}</div></div></div>
+        <div class="savings"><div class="save-left"><div class="save-title">TOTAL ESTIMATED SAVINGS</div><div class="save-sub">Compared with estimated do-nothing payback.</div></div><div class="save-right"><img src="{uris['pig']}"><div class="save-val">{html.escape(money(vals['total_savings']))}</div></div></div>
         <img class="footer" src="{uris['footer']}"></div></body></html>"""
 
         pdf=td/'out.pdf'
