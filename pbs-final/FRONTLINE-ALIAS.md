@@ -6,7 +6,7 @@ Use this shorthand whenever Andrew asks to send the locked recent client PBS FRO
 
 Canonical locked production source:
 Branch: locked-pbs-frontline-recent-v1
-Commit: 310bfa835f99f7cc1dc2d4bfe3a464ee8ae2318b
+Commit: 7655956c0c14eb4674db715eb552be67db4cc9e6
 File: pbs-final/locked/recent-client-v1-PRODUCTION.html
 Approved inbox proof Gmail ID: 1a0c2bc6fb7ac940
 
