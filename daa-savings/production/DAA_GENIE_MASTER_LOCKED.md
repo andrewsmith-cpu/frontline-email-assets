@@ -214,3 +214,12 @@ This is a permanent writing rule for Andrew-facing and DAA client-facing drafted
 - Canonical sender: `daa-savings/production/DAA_GENIE_CID_INLINE_SENDER_LOCKED_V2.gs`.
 - Production sending is currently LOCKED OFF in that sender. Draft/test only until Andrew explicitly reauthorizes sending.
 - Before any future send, verify the MIME contains a `cid:` reference, `multipart/related`, a Content-ID part, and an inline disposition marker.
+
+
+## PUNCTUATION LOCK — NO DASHES
+
+- Standing Andrew rule: no dash punctuation in DAA client-facing copy.
+- Use ellipses instead of em dashes or en dashes.
+- Do not hyphenate prose such as "quality control".
+- Phone-number hyphens are formatting, not prose punctuation, and remain unchanged.
+- This rule applies to subjects, body copy, signatures, captions, and future revisions unless Andrew explicitly overrides it.
