@@ -190,3 +190,15 @@ Production rule:
 - Treat this as detailing only: paint, trim, border, spacing, footer proportions.
 - Do not redesign, rebuild, reflow, or substitute a different renderer.
 - V2 requires a real Gmail draft/self-send proof before any client production use.
+
+
+## COPY STYLE LOCK ... ELLIPSIS RULE
+
+This is a permanent writing rule for Andrew-facing and DAA client-facing drafted copy.
+
+- Do not use em dashes or en dashes as punctuation.
+- Do not use standalone hyphens as sentence punctuation.
+- Use ellipses (...) instead.
+- Preserve exact URLs, fixed brand names, required legal terms, and locked signature text when punctuation is structurally required.
+- This rule applies automatically to email bodies, subject-line variants, text messages, follow-ups, scripts, notes, and future DAA GENIE copy unless Andrew explicitly asks for different punctuation.
+- Before finalizing drafted copy, perform a punctuation check and replace sentence-level dash punctuation with ellipses.
