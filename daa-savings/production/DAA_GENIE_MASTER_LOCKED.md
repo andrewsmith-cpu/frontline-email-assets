@@ -202,3 +202,15 @@ This is a permanent writing rule for Andrew-facing and DAA client-facing drafted
 - Preserve exact URLs, fixed brand names, required legal terms, and locked signature text when punctuation is structurally required.
 - This rule applies automatically to email bodies, subject-line variants, text messages, follow-ups, scripts, notes, and future DAA GENIE copy unless Andrew explicitly asks for different punctuation.
 - Before finalizing drafted copy, perform a punctuation check and replace sentence-level dash punctuation with ellipses.
+
+
+## INLINE DELIVERY LOCK — 2026-09-21
+
+- Savings Summary images MUST render inside the Gmail body.
+- Canonical delivery is Gmail CID / multipart-related using Apps Script `inlineImages`.
+- Direct Gmail connector attachment sends are NOT an approved production path.
+- Never use `attachment_files` for the Savings Summary.
+- Body copy must say “Savings Summary above,” never “attached.”
+- Canonical sender: `daa-savings/production/DAA_GENIE_CID_INLINE_SENDER_LOCKED_V2.gs`.
+- Production sending is currently LOCKED OFF in that sender. Draft/test only until Andrew explicitly reauthorizes sending.
+- Before any future send, verify the MIME contains a `cid:` reference, `multipart/related`, a Content-ID part, and an inline disposition marker.
