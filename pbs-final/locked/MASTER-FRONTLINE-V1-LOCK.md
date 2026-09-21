@@ -15,7 +15,7 @@ Routine substitution allowed:
 {{FIRST_NAME}} only
 
 Production subject:
-Hi {{FIRST_NAME}}... I was reviewing your file and wanted you to have these.
+{{FIRST_NAME}}... I Reviewed Your File and Pulled Your Numbers Back Up
 
 Asset stability:
 All visual assets are pinned to immutable Git commit:
