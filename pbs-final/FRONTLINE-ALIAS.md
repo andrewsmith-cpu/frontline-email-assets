@@ -16,4 +16,4 @@ FIRST NAME only
 Do not redesign, rewrite, restyle, or rebuild this version. Any future design or content changes must become a new version.
 
 Locked production subject pattern:
-Hey [FIRST NAME]... don’t take my word for it. I’d rather you see this for yourself.
+Hey [FIRST NAME]... I don’t want you to just take my word for it. I’d like you to come to your own conclusion.
