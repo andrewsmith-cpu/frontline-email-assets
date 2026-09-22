@@ -29,7 +29,7 @@ const DAA_CID = Object.freeze({
   WEBSITE: 'https://www.debtadvisorsofamerica.com/',
   INLINE_KEY: 'savingsSummary',
   BATCH_SIZE: 25,
-  PRODUCTION_ENABLED: false,
+  PRODUCTION_ENABLED: true,
   STATUS_READY: 'READY',
   STATUS_SENT: 'SENT',
   STATUS_HOLD: 'HOLD'
@@ -41,7 +41,7 @@ function onOpen() {
     .addItem('0 — Install / Verify Queue', 'installCidSendQueue')
     .addSeparator()
     .addItem('1 — Create First READY Inline Draft → Andrew', 'createFirstReadyCidDraftToAndrew')
-    .addItem('2 — Send Next 25 READY (LOCKED)', 'sendNext25CidInline')
+    .addItem('2 — Send Next 25 VERIFIED READY', 'sendNext25CidInline')
     .addItem('3 — Verify Latest Sent MIME', 'verifyLatestCidSend')
     .addToUi();
 }
@@ -110,7 +110,7 @@ function createFirstReadyCidDraftToAndrew() {
 
 function sendNext25CidInline() {
   if (!DAA_CID.PRODUCTION_ENABLED) {
-    throw new Error('PRODUCTION SEND IS LOCKED. Keep drafts/tests only until Andrew explicitly reauthorizes client sending.');
+    throw new Error('PRODUCTION SEND IS DISABLED.');
   }
   const ctx = getQueueContext_();
   let sent = 0;
@@ -130,6 +130,7 @@ function sendNext25CidInline() {
 
     try {
       validateQueueRow_(data, row);
+      validateVerifiedProductionRow_(ctx.ss, data, row);
       const blob = getDurableImageBlob_(data).setName(safeFilename_(data.clientName + ' Savings Summary.png'));
       const sendResult = sendCidMessage_(data, blob, data.email, false);
 
@@ -137,6 +138,7 @@ function sendNext25CidInline() {
       ctx.sheet.getRange(row, ctx.col['Sent At']).setValue(new Date());
       ctx.sheet.getRange(row, ctx.col['Gmail Message ID']).setValue(sendResult.messageId || '');
       ctx.sheet.getRange(row, ctx.col['Send Error']).clearContent();
+      markMasterSentVerified_(ctx.ss, data, sendResult.messageId || '');
       sent++;
     } catch (err) {
       failed++;
@@ -155,7 +157,7 @@ function sendNext25CidInline() {
 
 function sendCidMessage_(data, pngBlob, recipient, isSelfTest) {
   if (!isSelfTest && !DAA_CID.PRODUCTION_ENABLED) {
-    throw new Error('PRODUCTION SEND IS LOCKED. Draft/test only until Andrew explicitly reauthorizes sending.');
+    throw new Error('PRODUCTION SEND IS DISABLED.');
   }
   const firstName = data.firstName || data.clientName.split(/\s+/)[0] || data.clientName;
   const subject = (isSelfTest ? '[TEST] ' : '') + firstName + '… I Reviewed Your File and Pulled Your Numbers Back Up';
@@ -184,16 +186,16 @@ function buildApprovedEmailHtml_(data, firstName, isSelfTest) {
   <div style="max-width:1050px;margin:0;padding:0;font-family:Arial,Helvetica,sans-serif;color:#111;">
     ${selfNote}
     <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">Hi ${escapeHtml_(who)},</p>
-    <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">This is Andrew Logan Smith with Debt Advisors of America. I have your file open as part of a quality-control review and noticed we were never able to move forward after your original consultation.</p>
+    <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">This is Andrew Logan Smith with Debt Advisors of America. I have your file open as part of a quality control review and noticed we were never able to move forward after your original consultation.</p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">Can you tell me what happened, or what kept us from being able to move forward at the time? I’d genuinely appreciate the feedback.</p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 14px;"><strong>The hard part is already done.</strong></p>
-    <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">We already have your creditor information, eligible debt, budget, and the information from your original review — you do not need to start over.</p>
+    <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">We already have your creditor information, eligible debt, budget, and the information from your original review... you do not need to start over.</p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 16px;">With a new month and another billing cycle beginning, if your balances are still close to where they were when we last spoke, this is a good time to revisit your options before another month of minimum payments and interest goes by.</p>
     <p style="margin:0 0 16px;"><img src="cid:${DAA_CID.INLINE_KEY}" alt="Savings Summary" style="display:block;width:100%;max-width:1050px;height:auto;border:0;"></p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 14px;"><strong>Please take a close look at the updated Savings Summary above.</strong> It should give you a very good idea of what your options could look like today.</p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 14px;">If your situation has changed, we can simply pick up where you left off and review the numbers together.</p>
     <p style="font-size:16px;line-height:1.55;margin:0 0 18px;">Feel free to reply here, call me directly at <strong>${DAA_CID.CALL_PHONE}</strong>, or text me at <strong>${DAA_CID.TEXT_PHONE}</strong>.</p>
-    <p style="font-size:15px;line-height:1.5;margin:0;"><strong>Andrew L. Smith</strong><br><em>Senior Certified Debt Specialist</em><br>🇺🇸 <strong>Debt Advisors of America</strong><br><br>📞 <strong>Call:</strong> ${DAA_CID.CALL_PHONE}<br>💬 <strong>Text:</strong> ${DAA_CID.TEXT_PHONE}<br>✉️ <strong>Email:</strong> <a href="mailto:${DAA_CID.REPLY_TO}">${DAA_CID.REPLY_TO}</a><br>🌐 <strong>Website:</strong> <a href="${DAA_CID.WEBSITE}">${DAA_CID.WEBSITE.replace(/\/$/, '')}</a><br><br>🛡️ <strong>BBB Accredited — A+ Rating &amp; Reviews</strong><br><a href="https://www.bbb.org/us/ca/san-diego/profile/debt-relief-services/debt-advisors-of-america-1126-1000064078">https://www.bbb.org/us/ca/san-diego/profile/debt-relief-services/debt-advisors-of-america-1126-1000064078</a><br><br>⭐ <strong>Trustpilot Reviews</strong><br><a href="https://www.trustpilot.com/review/debtadvisorsofamerica.com">https://www.trustpilot.com/review/debtadvisorsofamerica.com</a><br><br>🇺🇸 <strong>We advise. We guide. You decide.</strong></p>
+    <div style="font-size:15px;line-height:1.22;margin:0;padding:0;"><div style="margin:0;"><strong>Andrew L. Smith</strong></div><div style="margin:0;"><em>Senior Certified Debt Specialist</em></div><div style="margin:0;">🇺🇸 <strong>Debt Advisors of America</strong></div><div style="margin:0;">📞 <strong>Call:</strong> ${DAA_CID.CALL_PHONE}</div><div style="margin:0;">💬 <strong>Text:</strong> ${DAA_CID.TEXT_PHONE}</div><div style="margin:0;">✉️ <strong>Email:</strong> <a href="mailto:${DAA_CID.REPLY_TO}">${DAA_CID.REPLY_TO}</a></div><div style="margin:0;">🌐 <strong>Website:</strong> <a href="${DAA_CID.WEBSITE}">${DAA_CID.WEBSITE.replace(/\/$/, '')}</a></div><div style="margin:0;">🛡️ <strong>BBB Accredited... A+ Rating &amp; Reviews</strong> <a href="https://www.bbb.org/us/ca/san-diego/profile/debt-relief-services/debt-advisors-of-america-1126-1000064078">BBB Reviews</a></div><div style="margin:0;">⭐ <strong>Trustpilot Reviews</strong> <a href="https://www.trustpilot.com/review/debtadvisorsofamerica.com">Trustpilot</a></div><div style="margin:0;">🇺🇸 <strong>We advise. We guide. You decide.</strong></div></div>
   </div>`;
 }
 
@@ -202,13 +204,13 @@ function buildPlainText_(data, firstName, isSelfTest) {
   return [
     'Hi ' + who + ',',
     '',
-    'This is Andrew Logan Smith with Debt Advisors of America. I have your file open as part of a quality-control review and noticed we were never able to move forward after your original consultation.',
+    'This is Andrew Logan Smith with Debt Advisors of America. I have your file open as part of a quality control review and noticed we were never able to move forward after your original consultation.',
     '',
     'Can you tell me what happened, or what kept us from being able to move forward at the time? I’d genuinely appreciate the feedback.',
     '',
     'The hard part is already done.',
     '',
-    'We already have your creditor information, eligible debt, budget, and the information from your original review — you do not need to start over.',
+    'We already have your creditor information, eligible debt, budget, and the information from your original review... you do not need to start over.',
     '',
     'With a new month and another billing cycle beginning, if your balances are still close to where they were when we last spoke, this is a good time to revisit your options before another month of minimum payments and interest goes by.',
     '',
@@ -221,16 +223,15 @@ function buildPlainText_(data, firstName, isSelfTest) {
     'Feel free to reply here, call me directly at ' + DAA_CID.CALL_PHONE + ', or text me at ' + DAA_CID.TEXT_PHONE + '.',
     '',
     'Best,',
-    '',
     'Andrew L. Smith',
     'Senior Certified Debt Specialist',
     'Debt Advisors of America',
-    '',
     'Call: ' + DAA_CID.CALL_PHONE,
     'Text: ' + DAA_CID.TEXT_PHONE,
     'Email: ' + DAA_CID.REPLY_TO,
     'Website: ' + DAA_CID.WEBSITE.replace(/\/$/, ''),
-    '',
+    'BBB Accredited... A+ Rating & Reviews',
+    'Trustpilot Reviews',
     'We advise. We guide. You decide.'
   ].join('\n');
 }
@@ -368,6 +369,82 @@ function validateQueueRow_(d, row) {
   if (!d.imageFileId && !(d.assetDeckId && d.slideObjectId)) {
     throw new Error('Row ' + row + ': image source missing.');
   }
+}
+
+function validateVerifiedProductionRow_(ss, data, queueRow) {
+  const sh = ss.getSheetByName('DAA_Master_Lead_List');
+  if (!sh) throw new Error('Missing DAA_Master_Lead_List.');
+
+  const headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getDisplayValues()[0];
+  const col = {};
+  headers.forEach((h, i) => { col[String(h || '').trim()] = i + 1; });
+
+  const required = ['Zenith ID', 'Email', 'WOW Data Source', 'WOW Status'];
+  const missing = required.filter(h => !col[h]);
+  if (missing.length) throw new Error('Master sheet missing verification columns: ' + missing.join(', '));
+
+  const ids = sh.getRange(2, col['Zenith ID'], Math.max(1, sh.getLastRow() - 1), 1).getDisplayValues();
+  let masterRow = 0;
+  for (let i = 0; i < ids.length; i++) {
+    if (String(ids[i][0] || '').trim() === data.clientId) {
+      masterRow = i + 2;
+      break;
+    }
+  }
+  if (!masterRow) throw new Error('Row ' + queueRow + ': Client ID not found in master list.');
+
+  const source = String(sh.getRange(masterRow, col['WOW Data Source']).getDisplayValue() || '').trim().toUpperCase();
+  if (!['CALCULATOR VERIFIED', 'ZENITH VERIFIED'].includes(source)) {
+    throw new Error('Row ' + queueRow + ': financial data is not calculator or Zenith verified.');
+  }
+
+  const masterEmail = String(sh.getRange(masterRow, col.Email).getDisplayValue() || '').trim().toLowerCase();
+  if (masterEmail !== String(data.email || '').trim().toLowerCase()) {
+    throw new Error('Row ' + queueRow + ': email does not match the verified master record.');
+  }
+
+  const masterStatus = String(sh.getRange(masterRow, col['WOW Status']).getDisplayValue() || '').trim().toUpperCase();
+  if (masterStatus.indexOf('SENT') >= 0) {
+    throw new Error('Row ' + queueRow + ': verified master record is already marked sent.');
+  }
+
+  const firstName = data.firstName || data.clientName.split(/\s+/)[0] || data.clientName;
+  const subject = firstName + '… I Reviewed Your File and Pulled Your Numbers Back Up';
+  const prior = GmailApp.search(
+    'in:sent to:' + data.email + ' subject:"' + subject.replace(/"/g, '') + '" newer_than:45d',
+    0,
+    1
+  );
+  if (prior.length) {
+    throw new Error('Row ' + queueRow + ': matching production email was already sent recently.');
+  }
+
+  return { sheet: sh, row: masterRow, col: col, source: source };
+}
+
+function markMasterSentVerified_(ss, data, messageId) {
+  const sh = ss.getSheetByName('DAA_Master_Lead_List');
+  if (!sh) return;
+
+  const headers = sh.getRange(1, 1, 1, sh.getLastColumn()).getDisplayValues()[0];
+  const col = {};
+  headers.forEach((h, i) => { col[String(h || '').trim()] = i + 1; });
+  if (!col['Zenith ID']) return;
+
+  const ids = sh.getRange(2, col['Zenith ID'], Math.max(1, sh.getLastRow() - 1), 1).getDisplayValues();
+  let row = 0;
+  for (let i = 0; i < ids.length; i++) {
+    if (String(ids[i][0] || '').trim() === data.clientId) {
+      row = i + 2;
+      break;
+    }
+  }
+  if (!row) return;
+
+  if (col['WOW Status']) sh.getRange(row, col['WOW Status']).setValue('SENT - VERIFIED');
+  if (col['WOW Gmail Draft']) sh.getRange(row, col['WOW Gmail Draft']).setValue('SENT:' + messageId);
+  if (col['WOW Gmail']) sh.getRange(row, col['WOW Gmail']).setValue('SENT:' + messageId);
+  if (col['Last Contact Note']) sh.getRange(row, col['Last Contact Note']).setValue('DAA Genie verified production email sent ' + Utilities.formatDate(new Date(), Session.getScriptTimeZone(), 'MM/dd/yyyy'));
 }
 
 function safeFilename_(s) {
