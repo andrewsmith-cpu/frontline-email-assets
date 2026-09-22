@@ -1,0 +1,42 @@
+name: DAA Genie Verified QA Proofs
+
+on:
+  push:
+    paths:
+      - '.github/workflows/qa-daa-genie-2026-09-22.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install renderer dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pillow weasyprint pymupdf
+          sudo apt-get update -qq
+          sudo apt-get install -y fonts-gfs-didot || true
+      - name: Render verified DAA Genie QA proofs
+        run: python daa-savings/production/qa-2026-09-22/render_qa.py
+      - name: Commit QA proofs
+        run: |
+          git config user.name "DAA QA Bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add daa-savings/production/qa-2026-09-22/rendered/
+          if git diff --cached --quiet; then
+            echo "No QA proof changes."
+          else
+            git commit -m "Render verified DAA Genie QA proofs"
+            git push
+          fi
