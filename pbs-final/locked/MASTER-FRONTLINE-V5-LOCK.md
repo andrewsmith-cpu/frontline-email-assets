@@ -28,3 +28,8 @@ DAA_Production_Master_2026-09-18.csv
 Use only Email Campaign Eligible = YES rows and retain established suppression and dedupe rules.
 
 This v5 supersedes prior MASTER FRONTLINE versions for future sends.
+
+Send order:
+Sort eligible recipients by Created Date descending, newest first.
+Skip any recipient already contacted by the active/recent production campaign, internal @contactdaa.com addresses, and obvious invalid/test addresses.
+Preserve established suppression and dedupe rules.
