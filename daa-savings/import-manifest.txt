@@ -1,3 +1,3 @@
 # filename|source_url
-# Production import bridge. Add a temporary source only long enough for GitHub Actions to capture and permanently commit the asset under daa-savings/production/.
-# Keep this manifest empty after a successful import so no sent email ever depends on an expiring source URL.
+# Production import bridge. Temporary source below is consumed by GitHub Actions and copied permanently into daa-savings/production/.
+Paula_June_Bakjajian_Savings_Summary_Refined_Final.png|https://sdmntprnorthcentralus.oaiusercontent.com/files/00000000-ce70-822f-9fcb-7cfd64089348/raw?se=2026-09-22T08%3A04%3A53Z&sp=r&sv=2026-02-06&sr=b&scid=fdd73d5a-0b57-528e-ac35-e393d294d1cf&skoid=456594af-533f-44ef-9bdc-35ea2f9daee5&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-22T03%3A32%3A55Z&ske=2026-09-23T03%3A32%3A55Z&sks=b&skv=2026-02-06&sig=lODQjsPGOdpqJS5OyxKFOou3fdvwXwYqbQJtkkI1qyc%3D
