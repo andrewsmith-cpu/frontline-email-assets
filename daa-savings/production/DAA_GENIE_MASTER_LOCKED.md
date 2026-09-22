@@ -223,3 +223,12 @@ This is a permanent writing rule for Andrew-facing and DAA client-facing drafted
 - Do not hyphenate prose such as "quality control".
 - Phone-number hyphens are formatting, not prose punctuation, and remain unchanged.
 - This rule applies to subjects, body copy, signatures, captions, and future revisions unless Andrew explicitly overrides it.
+
+
+## EMAIL COPY / SIGNATURE POLISH LOCK — APPROVED 2026-09-22
+
+- Keep the signature content the same, but render it as one compact block with no spacer rows between sections.
+- Use a tight line height and zero paragraph/div margins inside the signature.
+- Keep `The hard part is already done.` bold in the HTML email body.
+- Keep `Please take a close look at the updated Savings Summary above.` bold.
+- No other body-copy changes are authorized by this polish.
