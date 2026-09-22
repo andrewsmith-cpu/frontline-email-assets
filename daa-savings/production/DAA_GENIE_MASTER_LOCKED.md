@@ -232,3 +232,12 @@ This is a permanent writing rule for Andrew-facing and DAA client-facing drafted
 - Keep `The hard part is already done.` bold in the HTML email body.
 - Keep `Please take a close look at the updated Savings Summary above.` bold.
 - No other body-copy changes are authorized by this polish.
+
+
+## ANDREW OUTPUT RULES — HARD CONSTRAINTS
+
+These are standing workflow rules and are not optional preferences.
+
+1. Finished work product first. When Andrew asks to prepare a client email, draft, proof, or production example, put the finished product in the requested operational destination, normally Gmail Drafts or Inbox when explicitly requested. Do not substitute a chat preview for the actual finished product unless Andrew asks to see it in chat.
+2. No dashes in Andrew-facing drafted copy. Do not use em dashes or en dashes in drafted emails, texts, notes, scripts, or copy. Use ellipses instead when a pause or break is needed.
+3. Do not require Andrew to repeat these rules from task to task. Treat them as hard constraints when working on DAA production and client communications.
