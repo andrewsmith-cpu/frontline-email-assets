@@ -241,3 +241,21 @@ These are standing workflow rules and are not optional preferences.
 1. Finished work product first. When Andrew asks to see or test a finished client email, proof, or production example, use the real Gmail destination he specifies. If he says either Inbox or Drafts is fine, default to Inbox so he can review the received finished experience. Use Drafts only when he specifically asks for Drafts or when a draft review is the requested deliverable. Do not substitute a chat preview for the actual finished product unless Andrew asks to see it in chat.
 2. No dashes in Andrew-facing drafted copy. Do not use em dashes or en dashes in drafted emails, texts, notes, scripts, or copy. Use ellipses instead when a pause or break is needed.
 3. Do not require Andrew to repeat these rules from task to task. Treat them as hard constraints when working on DAA production and client communications.
+
+
+## PRODUCTION REAUTHORIZATION... 2026-09-22
+
+Andrew explicitly authorized immediate DAA GENIE production after approving the current finished visual.
+
+Final production copy polish:
+• No dash punctuation in client facing copy.
+• Use “quality control,” not “quality-control.”
+• Use ellipses where a sentence break is needed.
+• Signature is one continuous compact block with no blank spacer rows.
+• No visual redesign is authorized.
+
+Production remains fail closed:
+• Only CALCULATOR VERIFIED or ZENITH VERIFIED client data may send.
+• Synthetic or estimated rows remain HOLD.
+• Previously sent matching production emails are excluded from resend.
+• Image delivery remains embedded inline via CID.
