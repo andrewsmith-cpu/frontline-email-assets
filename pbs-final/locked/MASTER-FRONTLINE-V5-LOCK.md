@@ -33,3 +33,9 @@ Send order:
 Sort eligible recipients by Created Date descending, newest first.
 Skip any recipient already contacted by the active/recent production campaign, internal @contactdaa.com addresses, and obvious invalid/test addresses.
 Preserve established suppression and dedupe rules.
+
+SOURCE RESTRICTION:
+MASTER FRONTLINE production may use ONLY the established DAA master production source:
+DAA_Production_Master_2026-09-18.csv
+
+Do NOT pull recipients from recent uploads, one-off client files, current-conversation attachments, recent manually provided contacts, or the immediate FRONTLINE quick-send workflow unless Andrew explicitly instructs otherwise for a specific send.
