@@ -11,8 +11,8 @@ Meaning:
 Send the locked FRONTLINE production email to that client using the approved subject and approved production HTML. Only substitute the client’s first name. Do not redesign, rewrite, restyle, or rebuild anything.
 
 Canonical locked production source:
-Branch: locked-pbs-frontline-recent-v3
-Commit: 3d8f28ebca0651e43ee6dc7a0881c749ab84e157
+Branch: locked-pbs-frontline-recent-v4-signature
+Commit: e5060307d756e136fb03d6d0f923cbd61802f320
 File: pbs-final/locked/recent-client-v1-PRODUCTION.html
 Approved inbox proof Gmail ID: 1a0c2bc6fb7ac940
 
