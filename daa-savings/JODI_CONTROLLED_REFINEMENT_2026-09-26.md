@@ -28,3 +28,7 @@ Current candidate variants recovered for forensic comparison:
 These are NOT presumed to be approved sources; exact original approved image must be identified before image editing.
 
 Do not infer approval or send to clients from this manifest.
+Reference identification (forensic review, not a new design authorization):
+- The 2026-09-26 23:47 UTC Jodi Savings Summary candidate was immediately followed by the user's 23:49 approval of its visual clarity/refinement and request to moderate the oversized type only. This is the layout and original red/blue logo / cursive signature anchor, subject to matching the exact chat-approved source before export.
+- Subsequent variants diverged in logo color, signature and contact typography, typography size/color and Trustpilot box/star colors; do NOT use a later variant wholesale as the base.
+- The GitHub CID sender simply fetches the PNG blob and embeds it; it does not perform image upscaling/recompression. Improve the actual source/master, not the sending HTML or CID workflow.
