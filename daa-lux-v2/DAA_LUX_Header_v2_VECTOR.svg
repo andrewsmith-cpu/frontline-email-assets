@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1448 140" width="1448" height="140">
+ <rect x="46" y="14" width="370" height="110" fill="#FFFFFF"/>
+ <g shape-rendering="geometricPrecision">
+   <rect x="55" y="21" width="86" height="19" fill="#d80736"/>
+   <rect x="55" y="21" width="28" height="19" fill="#104b91"/>
+   <rect x="55" y="45" width="86" height="18.5" fill="#df0b38"/>
+   <rect x="55" y="45" width="28" height="18.5" fill="#104b91"/>
+   <rect x="55" y="69" width="86" height="18.5" fill="#db0836"/>
+   <rect x="55" y="93" width="86" height="19" fill="#db0836"/>
+ </g>
+ <g fill="#101b38" font-family="Liberation Serif,Georgia,serif" font-weight="bold" font-size="34.0" letter-spacing="-.4">
+  <text x="156" y="47">DEBT</text>
+  <text x="156" y="80">ADVISORS</text>
+  <text x="156" y="113">OF AMERICA</text>
+  <text x="368" y="94" font-family="Inter,Arial,sans-serif" font-size="12">®</text>
+ </g>
+</svg>
