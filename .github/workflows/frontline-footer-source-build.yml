@@ -1,0 +1,51 @@
+name: FRONTLINE crisp original-source signature
+
+on:
+  push:
+    branches:
+      - frontline-footer-crisp-review
+    paths:
+      - .github/workflows/frontline-footer-source-build.yml
+
+permissions:
+  contents: write
+
+jobs:
+  signature:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Render black original-source signature at 4x
+        run: |
+          pip install pillow numpy
+          python - <<'PY'
+          from PIL import Image, ImageFilter
+          import numpy as np, os
+          p=Image.open('pbs-final/andrew-signature.png').convert('RGBA')
+          ar=np.asarray(p).astype(np.float32)
+          alpha=ar[:,:,3]
+          if (alpha>240).mean()>0.85:
+              # If background was baked white, extract ink by color contrast.
+              rgb=ar[:,:,:3]
+              alpha=np.clip((255-rgb.min(axis=2))*1.3,0,255)
+          out=np.zeros((*alpha.shape,4),dtype=np.uint8)
+          out[:,:,3]=np.clip(alpha,0,255).astype(np.uint8)
+          im=Image.fromarray(out,'RGBA').resize((p.width*4,p.height*4),Image.Resampling.LANCZOS)
+          os.makedirs('pbs-final/assets',exist_ok=True)
+          im.save('pbs-final/assets/andrew-signature-black-source-4x.png',optimize=True)
+          print('Original source:',p.size,'Black output:',im.size)
+          PY
+      - name: Commit clean source-derived asset
+        run: |
+          git config user.name "DAA Asset Build"
+          git config user.email "actions@users.noreply.github.com"
+          git add pbs-final/assets/andrew-signature-black-source-4x.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Build black signature directly from original source"
+            git push
+          fi
